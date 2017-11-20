@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: springOrdenes
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Marcela
+Implementation-Vendor-Id: com.marcela
+Build-Jdk: 1.8.0_144
+Implementation-URL: http://projects.spring.io/spring-boot/springOrdene
+ s/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
