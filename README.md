@@ -20,3 +20,25 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 
 - El proyecto es un spring boot. Para ejecutarlo en Spring Tools Suite se debe correr como Spring Boot App.
+
+
+# Configuracion en jenkins
+
+- Pipeline nombre: SpringOrdenes (BackEnd)
+- Pipeline 
+-- Definition: pipeline script
+---script: 
+node('master') {
+    stage('checkout') {
+        git 'https://github.com/lmarcela/BackEnd-Ordenes.git'
+    }
+    stage('build and test') {
+       bat 'mvn test' 
+    }
+    stage('generate report') {
+        archive "target/**/*"
+        junit 'target/surefire-reports/*.xml'
+    }
+}
+
+- Plugins: Blue Ocean, HTML Publisher, JUnit, Test Results Analyzer.
