@@ -55,4 +55,5 @@ node('master') {
 }
 
 Plugins Recomendados: Blue Ocean, HTML Publisher, JUnit, Test Results Analyzer.
+
 Instalaciones adicionales recomendadas: git, maven.

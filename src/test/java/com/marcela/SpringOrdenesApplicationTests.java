@@ -46,8 +46,7 @@ public class SpringOrdenesApplicationTests {
 				.perform(get("/buscarCliente?cliente=" + 1).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		System.out.println("Fin Before");
-		System.out.println("Fin context loads");
+		System.out.println("Exito en contextLoads");
 	}
 
 	/*@RequestMapping(value = "/buscarCliente",method = RequestMethod.GET)
@@ -64,6 +63,7 @@ public class SpringOrdenesApplicationTests {
 		cus = new ObjectMapper().readValue(jsonResponse, Customer.class);
 		Assert.assertNotNull(cus);
 		Assert.assertFalse(cus.getName().isEmpty());
+		System.out.println("Exito en test1GetBuscarClienteExistente");
 	}
 
 	@Test
@@ -73,11 +73,12 @@ public class SpringOrdenesApplicationTests {
 		Assert.assertTrue(this.mockMvc2.perform(get("/buscarCliente?cliente=" + 100)
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .accept(MediaType.APPLICATION_JSON_UTF8_VALUE)
-	    ).andExpect(status().isOk()).andReturn().getResponse().getContentAsString().isEmpty());		
+	    ).andExpect(status().isOk()).andReturn().getResponse().getContentAsString().isEmpty());	
+		System.out.println("Exito en test3GetBuscarClienteNulo");	
 	}
 	
 	@Test
 	public void test2GetBuscarClienteJson() throws Exception {
-		System.out.println("DATOS "+JsonPath.parse(jsonResponse).json());
+		System.out.println("RESULTADO DATOS EN test2GetBuscarClienteJson: "+JsonPath.parse(jsonResponse).json());
 	}
 }

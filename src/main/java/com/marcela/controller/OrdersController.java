@@ -88,7 +88,7 @@ public class OrdersController {
 			if(productIds.length==productQuantitys.length) {
 				boolean esValido = true;
 				for(int i=0;i<productIds.length&esValido;i++) {					
-					Customer c=customerService.getBuscarCliente(customerId);
+					Customer c=customerService.getCustomer(customerId);
 					Product p =productService.getBuscarProducto(productIds[i]);
 					if (c.getProducts().contains(p)) {
 						productPrices[i] = p.getPrice();
@@ -99,7 +99,7 @@ public class OrdersController {
 				}			
 				if(esValido) {
 					Order order = new Order();
-					order.setCustomer(customerService.getBuscarCliente(customerId));
+					order.setCustomer(customerService.getCustomer(customerId));
 					order.setDeliveryAddress(deliveryAddress);
 					order.setCreationDate(creationDate);
 					double total = 0.0;

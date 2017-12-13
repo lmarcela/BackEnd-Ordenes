@@ -1,9 +1,14 @@
 package com.marcela.service;
 
+import java.util.List;
+
 import com.marcela.model.Customer;
 
 public interface CustomerService {
 
-	public Iterable<Customer> getListarClientes();
-	public Customer getBuscarCliente(int cliente);	
+	public List<Customer> getCustomers();
+	public Customer getCustomer(int customer);	
+	public Customer createCustomer(Customer customer);	
+	public Customer updateCustomer(Customer customer);	
+	public boolean deleteCustomer(int customer);	
 }

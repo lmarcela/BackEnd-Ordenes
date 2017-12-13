@@ -59,4 +59,11 @@ public class Customer {
 		this.products = products;
 	}
 
+	public Customer(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
+
+	public Customer() {
+	}
 }

@@ -1,5 +1,7 @@
 package com.marcela.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +14,29 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	@Override
-	public Iterable<Customer> getListarClientes() {		
+	public List<Customer> getCustomers() {		
 		return customerRepository.findAll();
 	}
 
 	@Override
-	public Customer getBuscarCliente(int cliente) {
-		return customerRepository.findOne(cliente);
+	public Customer getCustomer(int customerId) {
+		return customerRepository.findOne(customerId);
+	}
+
+	@Override
+	public Customer createCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+	@Override
+	public boolean deleteCustomer(int customerId) {
+		customerRepository.delete(customerId);
+		return true;
 	}
 
 }
