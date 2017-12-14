@@ -1,13 +1,12 @@
 package com.marcela.model;
 
-
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
 
 /**
- * Created by marcela 
+ * Created by marcela
  */
 
 @Entity
@@ -23,8 +22,8 @@ public class Customer {
 	private String email;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_product", 
-	joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = { @JoinColumn(name = "product_id") })
+	@JoinTable(name = "customer_product", joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "product_id") })
 	private Set<Product> products = new HashSet<Product>(0);
 
 	public int getCustomerId() {

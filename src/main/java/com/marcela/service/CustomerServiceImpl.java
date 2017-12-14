@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.marcela.model.Customer;
 import com.marcela.repository.CustomerRepository;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -14,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	@Override
-	public List<Customer> getCustomers() {		
+	public List<Customer> getCustomers() {
 		return customerRepository.findAll();
 	}
 

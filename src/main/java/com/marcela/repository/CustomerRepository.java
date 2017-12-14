@@ -9,6 +9,6 @@ import com.marcela.model.Customer;
  * Created by marcela
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer>{
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 }
