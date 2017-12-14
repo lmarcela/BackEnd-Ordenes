@@ -39,4 +39,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return true;
 	}
 
+	@Override
+	public boolean existCustomer(Customer customer) {
+		return customerRepository.exists(customer.getCustomerId());
+	}
+
 }

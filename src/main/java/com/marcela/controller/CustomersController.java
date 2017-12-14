@@ -29,16 +29,6 @@ public class CustomersController {
 
 	@Autowired
 	CustomerService customerService;
-
-	/*@RequestMapping(value = "/listarClientes",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Customer>> getListarClientes() {
-		return new ResponseEntity<Iterable<Customer>>(customerService.getListarClientes(), HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/buscarCliente",method = RequestMethod.GET)
-	public ResponseEntity<Customer> getBuscarCliente(int cliente) {
-		return new ResponseEntity<Customer>(customerService.getBuscarCliente(cliente), HttpStatus.OK);
-	}*/
 	@GetMapping("/customers")
 	public List<Customer> getCustomers(){
 		return customerService.getCustomers();
@@ -56,12 +46,20 @@ public class CustomersController {
 
 	@PutMapping("/customer")
 	public Customer updateCustomer(@RequestBody Customer customer){
-		return customerService.updateCustomer(customer);
+		if(customerService.existCustomer(customer)) {
+			return customerService.updateCustomer(customer);
+		}
+		else {
+			return null;
+		}
 	}
 
 	@DeleteMapping("/customer/{customerId}")
 	public boolean deleteUser(@PathVariable int customerId){
-		return customerService.deleteCustomer(customerId);
+		try{return customerService.deleteCustomer(customerId);}
+		catch (Exception e) {
+			return false;
+		}
 	}
 
 }
