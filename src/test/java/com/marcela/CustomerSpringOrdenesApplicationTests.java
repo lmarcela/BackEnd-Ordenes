@@ -39,19 +39,19 @@ public class CustomerSpringOrdenesApplicationTests {
 	@Test
 	public void getCustomers() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(get("/customertomers/").contentType(MediaType.APPLICATION_JSON)
+				.perform(get("/customers/").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		Customer[] customer = new ObjectMapper().readValue(jsonResponse, Customer[].class);
-		Assert.assertNotNull(customer);
+		Customer[] cus = new ObjectMapper().readValue(jsonResponse, Customer[].class);
+		Assert.assertNotNull(cus);
 		System.out.println(
-				"Exito en getCustomers con los datos: " + customer.length + "\n " + JsonPath.parse(jsonResponse).json());
+				"Exito en getCustomers con los datos: " + cus.length + "\n " + JsonPath.parse(jsonResponse).json());
 	}
 
 	@Test
 	public void getCustomer() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(get("/customertomer/" + 1).contentType(MediaType.APPLICATION_JSON)
+				.perform(get("/customer/" + 1).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Customer customer = new ObjectMapper().readValue(jsonResponse, Customer.class);
@@ -63,7 +63,7 @@ public class CustomerSpringOrdenesApplicationTests {
 	@Test
 	public void getCustomerNull() throws Exception {
 		Assert.assertTrue(mockMvc
-				.perform(get("/customertomer/" + 100).contentType(MediaType.APPLICATION_JSON)
+				.perform(get("/customer/" + 100).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString().isEmpty());
 		System.out.println("Exito en getCustomerNull");
@@ -74,7 +74,7 @@ public class CustomerSpringOrdenesApplicationTests {
 		String raw = "{\n" + "        \"name\": \"Yehynny\",\n" + "        \"email\": \"jas@mail.com\",\n"
 				+ "        \"products\": []\n" + "    }";
 		String jsonResponse = mockMvc
-				.perform(post("/customertomer/").content(raw).contentType(MediaType.APPLICATION_JSON)
+				.perform(post("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Customer customer = new ObjectMapper().readValue(jsonResponse, Customer.class);
@@ -87,7 +87,7 @@ public class CustomerSpringOrdenesApplicationTests {
 		String raw = "{\n" + "        \"name\": \"Lina Marcela Malaver Gómez\",\n" + "        \"email\": \"nodebeguardar@mail.com\",\n"
 				+ "        \"products\": []\n" + "    }";
 		String jsonResponse = mockMvc
-				.perform(post("/customertomer/").content(raw).contentType(MediaType.APPLICATION_JSON)
+				.perform(post("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println("Exito en createCustomerNull con los datos: " + jsonResponse + ".");
@@ -95,10 +95,10 @@ public class CustomerSpringOrdenesApplicationTests {
 
 	@Test
 	public void updateCustomer() throws Exception {
-		String raw = "{\n \"customertomerId\":1," + "        \"name\": \"Marce\",\n"
+		String raw = "{\n \"customerId\":1," + "        \"name\": \"Marce\",\n"
 				+ "        \"email\": \"marcecorreo@mail.com\",\n" + "        \"products\": []\n" + "    }";
 		String jsonResponse = mockMvc
-				.perform(put("/customertomer/").content(raw).contentType(MediaType.APPLICATION_JSON)
+				.perform(put("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Customer customer = new ObjectMapper().readValue(jsonResponse, Customer.class);
@@ -109,10 +109,10 @@ public class CustomerSpringOrdenesApplicationTests {
 
 	@Test
 	public void updateCustomerNull() throws Exception {
-		String raw = "{\n \"customertomerId\":1000," + "        \"name\": \"MarceNosave\",\n"
+		String raw = "{\n \"customerId\":1000," + "        \"name\": \"MarceNosave\",\n"
 				+ "        \"email\": \"marcecorreo1@mail.com\",\n" + "        \"products\": []\n" + "    }";
 		String jsonResponse = mockMvc
-				.perform(put("/customertomer/").content(raw).contentType(MediaType.APPLICATION_JSON)
+				.perform(put("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println("Exito en updateCustomerNull con los salida: " + jsonResponse + ".");
@@ -121,7 +121,7 @@ public class CustomerSpringOrdenesApplicationTests {
 	@Test
 	public void deleteCustomer() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(delete("/customertomer/" + 2).contentType(MediaType.APPLICATION_JSON)
+				.perform(delete("/customer/" + 2).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Assert.assertTrue(jsonResponse.equals("true"));
@@ -131,7 +131,7 @@ public class CustomerSpringOrdenesApplicationTests {
 	@Test
 	public void deleteCustomerNull() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(delete("/customertomer/" + 200).contentType(MediaType.APPLICATION_JSON)
+				.perform(delete("/customer/" + 200).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Assert.assertFalse(jsonResponse.equals("true"));
