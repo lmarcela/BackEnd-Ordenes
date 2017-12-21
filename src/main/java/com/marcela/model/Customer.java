@@ -16,7 +16,8 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private int customerId;
-
+	
+	@Column(unique=true)
 	private String name;
 
 	private String email;

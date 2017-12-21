@@ -38,7 +38,11 @@ public class CustomersController {
 
 	@PostMapping("/customer")
 	public Customer createCustomer(@RequestBody Customer customer) {
-		return customerService.createCustomer(customer);
+		try {
+			return customerService.createCustomer(customer);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@PutMapping("/customer")

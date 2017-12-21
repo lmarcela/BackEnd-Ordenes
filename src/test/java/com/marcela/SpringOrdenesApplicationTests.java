@@ -82,6 +82,16 @@ public class SpringOrdenesApplicationTests {
 		Assert.assertFalse(cus.getName().isEmpty());
 		System.out.println("Exito en createCustomer con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
+	@Test
+	public void createCustomerNull() throws Exception {
+		String raw = "{\n" + "        \"name\": \"Lina Marcela Malaver Gómez\",\n" + "        \"email\": \"nodebeguardar@mail.com\",\n"
+				+ "        \"products\": []\n" + "    }";
+		String jsonResponse = mockMvc
+				.perform(post("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+		System.out.println("Exito en createCustomerNull con los datos: " + jsonResponse + ".");
+	}
 
 	@Test
 	public void updateCustomer() throws Exception {

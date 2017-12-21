@@ -89,7 +89,7 @@ public class OrdersController {
 				boolean esValido = true;
 				for(int i=0;i<productIds.length&esValido;i++) {					
 					Customer c=customerService.getCustomer(customerId);
-					Product p =productService.getBuscarProducto(productIds[i]);
+					Product p =productService.getProduct(productIds[i]);
 					if (c.getProducts().contains(p)) {
 						productPrices[i] = p.getPrice();
 						productDescriptions[i] = p.getName();
@@ -112,7 +112,7 @@ public class OrdersController {
 					for(int i=0;i<productIds.length;i++) {
 						OrderDetail orderDetail = new OrderDetail();
 						orderDetail.setOrder(orderService.getOrder(order.getOrderId()));
-						orderDetail.setProduct(productService.getBuscarProducto(productIds[i]));
+						orderDetail.setProduct(productService.getProduct(productIds[i]));
 						orderDetail.setProductDescription(productDescriptions[i]);
 						orderDetail.setPrice(productPrices[i]);
 						orderDetail.setQuantity(productQuantitys[i]);

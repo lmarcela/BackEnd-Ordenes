@@ -16,6 +16,7 @@ public class Product {
 
 	private int productId;
 
+	@Column(unique=true)
 	private String name;
 
 	private double price;
@@ -55,5 +56,13 @@ public class Product {
 	public void addOrderDetails(OrderDetail orderDetail) {
 		this.orderDetails.add(orderDetail);
 	}  
+
+	public Product(String name, double price) {
+		this.name = name;
+		this.price = price;
+	}
+
+	public Product() {
+	}
 
 }
