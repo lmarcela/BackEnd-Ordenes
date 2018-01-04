@@ -22,7 +22,7 @@ public class Customer {
 
 	private String email;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "customer_product", joinColumns = { @JoinColumn(name = "customer_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "product_id") })
 	private Set<Product> products = new HashSet<Product>(0);

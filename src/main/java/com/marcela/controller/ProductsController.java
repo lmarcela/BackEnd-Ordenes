@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.marcela.model.Product;
 import com.marcela.service.ProductService;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 /**
  * Created by marcela
  */

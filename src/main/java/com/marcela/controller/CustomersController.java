@@ -38,15 +38,21 @@ public class CustomersController {
 
 	@PostMapping("/customer")
 	public Customer createCustomer(@RequestBody Customer customer) {
+		System.out.println("LLEGO a crear");
+		System.out.println(customer.getName()+ "productos: "+customer.getProducts());
 		try {
+			System.out.println("gUARDO");
 			return customerService.createCustomer(customer);
 		} catch (Exception e) {
+			System.out.println("NO gUARDO"+e.getMessage());
 			return null;
 		}
 	}
 
 	@PutMapping("/customer")
 	public Customer updateCustomer(@RequestBody Customer customer) {
+		System.out.println("LLEGO a ACTUALIZAR");
+		System.out.println(customer.getName()+ "productos: "+customer.getProducts());
 		if (customerService.existCustomer(customer)) {
 			return customerService.updateCustomer(customer);
 		} else {

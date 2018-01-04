@@ -42,10 +42,10 @@ public class CustomerSpringOrdenesApplicationTests {
 				.perform(get("/customers/").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		Customer[] cus = new ObjectMapper().readValue(jsonResponse, Customer[].class);
-		Assert.assertNotNull(cus);
+		Customer[] customer = new ObjectMapper().readValue(jsonResponse, Customer[].class);
+		Assert.assertNotNull(customer);
 		System.out.println(
-				"Exito en getCustomers con los datos: " + cus.length + "\n " + JsonPath.parse(jsonResponse).json());
+				"Exito en getCustomers con los datos: " + customer.length + "\n " + JsonPath.parse(jsonResponse).json());
 	}
 
 	@Test
