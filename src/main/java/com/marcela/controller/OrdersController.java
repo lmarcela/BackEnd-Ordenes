@@ -2,11 +2,15 @@ package com.marcela.controller;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,32 +47,37 @@ public class OrdersController {
 
 	@Autowired
 	OrderDetailService orderDetailService;
-
-	@RequestMapping(value = "/listarOrdenes",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Order>> getListarOrdenes() {
-		return new ResponseEntity<Iterable<Order>>(orderService.getListarOrdenes(), HttpStatus.OK);
+	
+	@GetMapping("/orders")
+	public List<Order> getOrders() {
+		return orderService.getOrders();
+	}
+	
+	@GetMapping("/order/{orderId}")
+	public Order getOrder(@PathVariable int orderId) {
+		return orderService.getOrder(orderId);
 	}
 
-	@RequestMapping(value = "/buscarOrdenesCliente",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Order>> getBuscarOrdenesCliente(int cliente) {
-		return new ResponseEntity<Iterable<Order>>(orderService.getBuscarOrdenesCliente(cliente), HttpStatus.OK);
+	@GetMapping("/order/customer/{customerId}")
+	public List<Order> getOrderCustomer(@PathVariable int customerId) {
+		return orderService.getOrderCustomer(customerId);
 	}
 
-	@RequestMapping(value = "/buscarOrdenesClienteFechas",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Order>> getBuscarOrdenesClienteFechas(int cliente,Date fechaInicio,Date fechaFin) {
-		return new ResponseEntity<Iterable<Order>>(orderService.getBuscarOrdenesClienteFechas(cliente, fechaInicio, fechaFin), HttpStatus.OK);
+	@GetMapping("/order/customer/{customerId}/desde/{fechaInicio}/hasta/{fechaFin}")
+	public List<Order> getOrderCustomerDates(@PathVariable int customerId, @PathVariable Date fechaInicio, @PathVariable Date fechaFin) {
+		return orderService.getOrderCustomerDates(customerId,fechaInicio,fechaFin);
 	}    
 
-	@RequestMapping(value = "/buscarOrdenesClienteUltimoMes",method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Order>> getBuscarOrdenesClienteUltimoMes(int cliente) {
+	@GetMapping("/order/customer/{customerId}/ultimoMes")
+	public List<Order> getOrderCustomerLastMonth(@PathVariable int customerId) {
 		LocalDate fechaActual = LocalDate.now();
 		LocalDate ultimoMes =  fechaActual.minusMonths(1);
-		return new ResponseEntity<Iterable<Order>>(orderService.findByCustomerUltimoMes(cliente, Date.valueOf(fechaActual),Date.valueOf(ultimoMes)), HttpStatus.OK);
-	}
+		return orderService.getOrderCustomerLastMonth(customerId,Date.valueOf(fechaActual),Date.valueOf(ultimoMes));
+	} 
 
-	@RequestMapping(value="/createorder", method = RequestMethod.POST)   
-	@ResponseBody
-	public String saveOrder(@RequestBody Data data){
+	@PostMapping("/order")
+	public Order createOrder(@RequestBody Data data) {
+		try {
 		int customerId=data.getCustomerId();
 		String deliveryAddress=data.getDeliveryAddress();
 		String fecha=data.getCreationDate();
@@ -82,7 +91,8 @@ public class OrdersController {
 			unidades+=productQuantitys[i];
 		}
 		if(unidades==0) {
-			return "ERROR: No se puede crear orden si no hay productos";
+			//return "ERROR: No se puede crear orden si no hay productos";
+			return null;
 		}
 		else if(unidades<6) {
 			if(productIds.length==productQuantitys.length) {
@@ -107,7 +117,7 @@ public class OrdersController {
 						total = total + (productPrices[i]*productQuantitys[i]);
 					}
 					order.setTotal(total);
-					orderService.save(order);
+					orderService.createOrder(order);
 					System.out.println("Se creó order con id: "+order.getOrderId());
 					for(int i=0;i<productIds.length;i++) {
 						OrderDetail orderDetail = new OrderDetail();
@@ -119,18 +129,26 @@ public class OrdersController {
 						orderDetailService.save(orderDetail);
 						System.out.println("Se creó order_detail con id: "+orderDetail.getOrderDetailId());
 					}
-					return "Se creo order con id "+order.getOrderId()+" del "+creationDate;
+					//return "Se creo order con id "+order.getOrderId()+" del "+creationDate;
+					return order;
 				}
 				else {
-					return "ERROR: Al menos uno de los productos que indico no estan permitidos para el cliente.";
+					//return "ERROR: Al menos uno de los productos que indico no estan permitidos para el cliente.";
+					return null;
 				}
 			}else {
-				return "ERROR: Deben haber tantas cantidades como id de productos.";
+				//return "ERROR: Deben haber tantas cantidades como id de productos.";
+				return null;
 			}
 		}
 		else {
-			return "ERROR: Se supero el maximo de unidades permitidas. El maximo permitido es 5 y su orden tiene "+unidades+" unidades.";
+			//return "ERROR: Se supero el maximo de unidades permitidas. El maximo permitido es 5 y su orden tiene "+unidades+" unidades.";
+			return null;
 		}
 
 	}
+		catch (Exception e) {
+			return null;
+		}
 }
+	}
