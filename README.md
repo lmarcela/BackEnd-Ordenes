@@ -153,5 +153,5 @@ Plugins Recomendados: Blue Ocean, HTML Publisher, JUnit, Test Results Analyzer.
 Instalaciones adicionales recomendadas: git, maven.
 ## Otros archivos
 - SQL: https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/sql/
-- Diagrama Entidad Relacion: https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/Diagrama Entidad Relación.png
+- Diagrama Entidad Relacion: https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/Diagrama%20Entidad%20Relaci%C3%B3n.png
  
