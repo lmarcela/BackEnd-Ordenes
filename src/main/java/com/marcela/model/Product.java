@@ -16,13 +16,12 @@ public class Product {
 
 	private int productId;
 
-	@Column(unique=true)
+	@Column(unique = true)
 	private String name;
 
 	private double price;
 
-	@OneToMany(mappedBy = "product",
-			cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>();
 
 	public int getProductId() {
@@ -55,7 +54,7 @@ public class Product {
 
 	public void addOrderDetails(OrderDetail orderDetail) {
 		this.orderDetails.add(orderDetail);
-	}  
+	}
 
 	public Product(String name, double price) {
 		this.name = name;

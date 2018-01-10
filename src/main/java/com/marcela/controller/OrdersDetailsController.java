@@ -12,7 +12,7 @@ import com.marcela.model.OrderDetail;
 import com.marcela.service.OrderDetailService;
 
 /**
- * Created by marcela 
+ * Created by marcela
  */
 
 @CrossOrigin
@@ -22,7 +22,7 @@ public class OrdersDetailsController {
 	@Autowired
 	OrderDetailService orderDetailService;
 
-	@RequestMapping(value = "/listarOrdenesDetalles",method = RequestMethod.GET)
+	@RequestMapping(value = "/listarOrdenesDetalles", method = RequestMethod.GET)
 	public ResponseEntity<Iterable<OrderDetail>> getListarOrdenesDetalles() {
 		return new ResponseEntity<Iterable<OrderDetail>>(orderDetailService.getListarOrdenesDetalles(), HttpStatus.OK);
 	}

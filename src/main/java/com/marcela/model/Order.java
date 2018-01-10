@@ -1,6 +1,5 @@
 package com.marcela.model;
 
-
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.marcela.repository.OrderDetailRepository;
-
 
 /**
  * Created by marcela
@@ -58,7 +56,7 @@ public class Order {
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
-	}		
+	}
 
 	public String getDeliveryAddress() {
 		return deliveryAddress;
@@ -106,6 +104,6 @@ public class Order {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}  
+	}
 
 }

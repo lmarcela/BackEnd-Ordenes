@@ -81,6 +81,7 @@ public class ProductSpringOrdenesApplicationTests {
 		Assert.assertFalse(product.getName().isEmpty());
 		System.out.println("Exito en createProduct con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
+
 	@Test
 	public void createProductNull() throws Exception {
 		String raw = "{\"name\":\"Tablet HUAWEI T1-701W WiFi - G\",\"price\":3.5}";
@@ -118,11 +119,11 @@ public class ProductSpringOrdenesApplicationTests {
 	@Test
 	public void deleteProduct() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(delete("/product/" + 2).contentType(MediaType.APPLICATION_JSON)
+				.perform(delete("/product/4").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		Assert.assertTrue(jsonResponse.equals("true"));
 		System.out.println("Exito en deleteProduct con salida: \n " + jsonResponse);
+		Assert.assertTrue(jsonResponse.equals("true"));
 	}
 
 	@Test

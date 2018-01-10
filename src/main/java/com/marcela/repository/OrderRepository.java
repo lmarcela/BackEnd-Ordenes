@@ -15,20 +15,22 @@ import com.marcela.model.Order;
  * Created by marcela
  */
 @Repository
-public interface OrderRepository extends JpaRepository<Order,Integer>{
-	//Listar ordenes de cliente
+public interface OrderRepository extends JpaRepository<Order, Integer> {
+	// Listar ordenes de cliente
 	@Async
-	@Query("FROM Order o where o.customer.customerId = :id") 
-	public List<Order> findByCustomer (@Param("id") int customerId);
+	@Query("FROM Order o where o.customer.customerId = :id")
+	public List<Order> findByCustomer(@Param("id") int customerId);
 
-	//Listar ordenes de cliente entre rango de fechas
+	// Listar ordenes de cliente entre rango de fechas
 	@Async
-	@Query("FROM Order o where o.customer.customerId = :id and o.creationDate between :fechaInicio and :fechaFin") 
-	public List<Order> findByCustomerDates (@Param("id") int customerId, @Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
+	@Query("FROM Order o where o.customer.customerId = :id and o.creationDate between :fechaInicio and :fechaFin")
+	public List<Order> findByCustomerDates(@Param("id") int customerId, @Param("fechaInicio") Date fechaInicio,
+			@Param("fechaFin") Date fechaFin);
 
-	//Listar ordenes de cliente del ultimo mes
+	// Listar ordenes de cliente del ultimo mes
 	@Async
-	@Query("FROM Order o where o.customer.customerId = :id and o.creationDate between :ultimoMes and :fechaActual")  
-	public List<Order> findByCustomerLastMonth (@Param("id") int customerId, @Param("fechaActual") Date fechaActual, @Param("ultimoMes") Date ultimoMes);
+	@Query("FROM Order o where o.customer.customerId = :id and o.creationDate between :ultimoMes and :fechaActual")
+	public List<Order> findByCustomerLastMonth(@Param("id") int customerId, @Param("fechaActual") Date fechaActual,
+			@Param("ultimoMes") Date ultimoMes);
 
 }

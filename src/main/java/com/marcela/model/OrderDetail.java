@@ -1,6 +1,5 @@
 package com.marcela.model;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,9 +27,9 @@ public class OrderDetail {
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	//campos adicionales
+	// campos adicionales
 	private String productDescription;
-	private double price;    
+	private double price;
 	private int quantity;
 
 	public int getOrderDetailId() {
@@ -42,13 +41,12 @@ public class OrderDetail {
 	}
 
 	public void setOrder(Order order) {
-		this.order=order;
+		this.order = order;
 	}
 
 	public void setProduct(Product product) {
-		this.product=product;
+		this.product = product;
 	}
-
 
 	public String getProductDescription() {
 		return productDescription;

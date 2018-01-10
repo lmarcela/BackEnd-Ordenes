@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.marcela.model.Product;
 
 /**
- * Created by marcela 
+ * Created by marcela
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {

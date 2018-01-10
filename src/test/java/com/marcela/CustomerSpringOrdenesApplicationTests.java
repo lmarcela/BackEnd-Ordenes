@@ -44,8 +44,8 @@ public class CustomerSpringOrdenesApplicationTests {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		Customer[] customer = new ObjectMapper().readValue(jsonResponse, Customer[].class);
 		Assert.assertNotNull(customer);
-		System.out.println(
-				"Exito en getCustomers con los datos: " + customer.length + "\n " + JsonPath.parse(jsonResponse).json());
+		System.out.println("Exito en getCustomers con los datos: " + customer.length + "\n "
+				+ JsonPath.parse(jsonResponse).json());
 	}
 
 	@Test
@@ -82,10 +82,11 @@ public class CustomerSpringOrdenesApplicationTests {
 		Assert.assertFalse(customer.getName().isEmpty());
 		System.out.println("Exito en createCustomer con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
+
 	@Test
 	public void createCustomerNull() throws Exception {
-		String raw = "{\n" + "        \"name\": \"Lina Marcela Malaver Gómez\",\n" + "        \"email\": \"nodebeguardar@mail.com\",\n"
-				+ "        \"products\": []\n" + "    }";
+		String raw = "{\n" + "        \"name\": \"Lina Marcela Malaver Gómez\",\n"
+				+ "        \"email\": \"nodebeguardar@mail.com\",\n" + "        \"products\": []\n" + "    }";
 		String jsonResponse = mockMvc
 				.perform(post("/customer/").content(raw).contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))

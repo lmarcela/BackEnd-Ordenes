@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.marcela.model.Product;
 import com.marcela.service.ProductService;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 /**
  * Created by marcela
  */
@@ -61,6 +59,7 @@ public class ProductsController {
 		try {
 			return productService.deleteProduct(productId);
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return false;
 		}
 	}

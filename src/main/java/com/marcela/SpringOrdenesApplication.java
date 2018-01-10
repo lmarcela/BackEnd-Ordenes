@@ -37,61 +37,46 @@ public class SpringOrdenesApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		Product product = new Product();
-		product.setName("galletas A");
-		product.setPrice(2000);
+		product.setName("Tablet LENOVO Yoga 3 8\"\"  N");
+		product.setPrice(430000.00);
 		productService.createProduct(product);
 		Set<Product> array = new HashSet<Product>();
 		Product product2 = new Product();
-		product2.setName("galletas B");
-		product2.setPrice(3000);
+		product2.setName("Tablet HUAWEI T1-701W WiFi - G");
+		product2.setPrice(300000.00);
 		productService.createProduct(product2);
 		array.add(product);
 		array.add(product2);
 		Customer customer = new Customer();
-		customer.setName("Mariela Ortiz");
-		customer.setEmail("mariela@mail.com");
+		customer.setName("Lina Marcela Malaver Gómez");
+		customer.setEmail("marcela9409@gmail.com");
 		customer.setProducts(array);
 		customerService.createCustomer(customer);
 		Order or = new Order();
-		//or.setCustomer(customer);
 		or.setCreationDate(Date.valueOf("2018-01-01"));
 		or.setDeliveryAddress("cra 56");
-		or.setTotal(6000);
-		//System.out.println("Total"+or.getCustomerId());
-		//orderService.save(or);
-		
+		or.setTotal(900000);
 		orderService.createOrder(or);
-		
+
 		OrderDetail od = new OrderDetail();
-		//od.setOrder(or);
-		//od.setProduct(product);
-		od.setPrice(2000);
-		od.setProductDescription("galletas A");
+		od.setPrice(300000);
+		od.setProductDescription("Tablet LENOVO Yoga 3 8\"\"  N");
 		od.setQuantity(3);
 		orderDetailService.save(od);
 		od.setOrder(or);
 		od.setProduct(product);
 		orderDetailService.save(od);
-		
-		/*Set<OrderDetail> array2 = new HashSet<OrderDetail>();
-		array2.add(od);
-		or.setOrderDetails(array2);
-		*/
-		
-		
 		or.setCustomer(customer);
 		orderService.createOrder(or);
-		
-		
 
-		/*productService.createProduct(new Product("Tablet LENOVO Yoga 3 8\"\"  N", 430000.00));
-		productService.createProduct(new Product("Tablet HUAWEI T1-701W WiFi - G", 300000.00));
-		customerService.createCustomer(new Customer("Lina Marcela Malaver Gómez", "marcela9409@gmail.com"));
+		productService.createProduct(new Product("iMac MNDY2E/A 1TB 21.5\"\"", 5000000.00));
+		productService.createProduct(new Product("Morral ASUS 16\"\" Argo Negro", 70000.00));
+
 		customerService.createCustomer(new Customer("Yessica Alexandra Castillo", "yesscastillo@gmail.com"));
 		customerService.createCustomer(new Customer("Jeisson Guerrero Quezada", "jeisson@gmail.com"));
 		customerService.createCustomer(new Customer("Jose Hernán Castañeda", "hernan@live.com"));
 		customerService.createCustomer(new Customer("Lina Maria Leon Blanco", "lina@yahoo.es"));
-		*/
+
 	}
 
 }

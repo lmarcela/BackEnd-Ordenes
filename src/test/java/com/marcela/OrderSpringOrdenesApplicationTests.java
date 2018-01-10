@@ -41,7 +41,7 @@ public class OrderSpringOrdenesApplicationTests {
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println("Exito en getOrders con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
-	
+
 	@Test
 	public void getOrder() throws Exception {
 		String jsonResponse = mockMvc
@@ -64,8 +64,8 @@ public class OrderSpringOrdenesApplicationTests {
 	@Test
 	public void getOrdersCustomerDates() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(get("/order/customer/1/desde/2017-01-10/hasta/2018-02-05").contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+				.perform(get("/order/customer/1/desde/2017-01-10/hasta/2018-02-05")
+						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println("Exito en getOrdersCustomerDates con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
@@ -76,7 +76,8 @@ public class OrderSpringOrdenesApplicationTests {
 				.perform(get("/order/customer/1/ultimoMes").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		System.out.println("Exito en getOrderCustomerLastMonth con los datos: \n " + JsonPath.parse(jsonResponse).json());
+		System.out
+				.println("Exito en getOrderCustomerLastMonth con los datos: \n " + JsonPath.parse(jsonResponse).json());
 	}
 
 	@Test

@@ -13,7 +13,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	private OrderDetailRepository orderDetailRepository;
 
 	@Override
-	public Iterable<OrderDetail> getListarOrdenesDetalles() {	
+	public Iterable<OrderDetail> getListarOrdenesDetalles() {
 		return orderDetailRepository.findAll();
 	}
 
