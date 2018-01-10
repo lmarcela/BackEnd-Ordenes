@@ -28,6 +28,7 @@ Secciones del README:
 - <a href="https://github.com/lmarcela/BackEnd-Ordenes#test-unitarios">Test Unitarios</a> 
 - <a href="https://github.com/lmarcela/BackEnd-Ordenes#comandos-para-git">COMANDOS PARA GIT</a> 
 - <a href="https://github.com/lmarcela/BackEnd-Ordenes#configuracion-en-jenkins">Configuracion en jenkins</a> 
+- <a href="https://github.com/lmarcela/BackEnd-Ordenes#otros-archivos">Otros archivos</a> 
 
 ## Algunas Vistas (Prueba del funcionamiento con Postman)
 - **Vista de getCustomers (localhost:8080/customers) - METODO GET**	
@@ -150,3 +151,7 @@ node('master') {
 Plugins Recomendados: Blue Ocean, HTML Publisher, JUnit, Test Results Analyzer.
 
 Instalaciones adicionales recomendadas: git, maven.
+## Otros archivos
+- SQL: https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/sql/
+- Diagrama Entidad Relacion: https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/Diagrama Entidad Relación.png
+ 
