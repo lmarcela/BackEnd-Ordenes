@@ -119,7 +119,7 @@ public class ProductSpringOrdenesApplicationTests {
 	@Test
 	public void deleteProduct() throws Exception {
 		String jsonResponse = mockMvc
-				.perform(delete("/product/4").contentType(MediaType.APPLICATION_JSON)
+				.perform(delete("/product/5").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		System.out.println("Exito en deleteProduct con salida: \n " + jsonResponse);

@@ -55,7 +55,7 @@ public class CustomersController {
 	}
 
 	@DeleteMapping("/customer/{customerId}")
-	public boolean deleteUser(@PathVariable int customerId) {
+	public boolean deleteCustomer(@PathVariable int customerId) {
 		try {
 			return customerService.deleteCustomer(customerId);
 		} catch (Exception e) {

@@ -63,20 +63,38 @@ public class SpringOrdenesApplication implements CommandLineRunner {
 		od.setProductDescription("Tablet LENOVO Yoga 3 8\"\"  N");
 		od.setQuantity(3);
 		orderDetailService.save(od);
+		
 		od.setOrder(or);
 		od.setProduct(product);
 		orderDetailService.save(od);
 		or.setCustomer(customer);
 		orderService.createOrder(or);
 
-		productService.createProduct(new Product("iMac MNDY2E/A 1TB 21.5\"\"", 5000000.00));
-		productService.createProduct(new Product("Morral ASUS 16\"\" Argo Negro", 70000.00));
+		product = productService.createProduct(new Product("iMac MNDY2E/A 1TB 21.5\"\"", 5000000.00));
+		customer = customerService.createCustomer(new Customer("Yessica Alexandra Castillo", "yesscastillo@gmail.com"));
+		array.add(product);
+		customer.setProducts(array);
+		customerService.updateCustomer(customer);
 
-		customerService.createCustomer(new Customer("Yessica Alexandra Castillo", "yesscastillo@gmail.com"));
-		customerService.createCustomer(new Customer("Jeisson Guerrero Quezada", "jeisson@gmail.com"));
-		customerService.createCustomer(new Customer("Jose Hernán Castañeda", "hernan@live.com"));
-		customerService.createCustomer(new Customer("Lina Maria Leon Blanco", "lina@yahoo.es"));
+		product = productService.createProduct(new Product("Morral ASUS 16\"\" Argo Negro", 70000.00));		
+		customer = customerService.createCustomer(new Customer("Jeisson Guerrero Quezada", "jeisson@gmail.com"));
+		array.add(product);
+		customer.setProducts(array);
+		customerService.updateCustomer(customer);
+		
+		customer = customerService.createCustomer(new Customer("Jose Hernán Castañeda", "hernan@live.com"));
+		array = new HashSet<Product>();
+		array.add(product);
+		customer.setProducts(array);
+		customerService.updateCustomer(customer);
+		
+		customer = customerService.createCustomer(new Customer("Lina Maria Leon Blanco", "lina@yahoo.es"));
+		array = new HashSet<Product>();
+		array.add(product2);
+		customer.setProducts(array);
+		customerService.updateCustomer(customer);
 
+		productService.createProduct(new Product("Celular Asus Zenfone 3 4G Negro", 900000.00));	
 	}
 
 }
