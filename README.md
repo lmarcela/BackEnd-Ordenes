@@ -21,9 +21,7 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 - El proyecto es un spring boot. Para ejecutarlo en Spring Tools Suite se debe correr como Spring Boot App.
 
-## Vistas (Prueba del funcionamiento con Postman)
-
-### CustomersController
+## Algunas Vistas (Prueba del funcionamiento con Postman)
 - Vista de getCustomers (localhost:8080/customers) - METODO GET	
 ![Vista de getCustomers](https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/README/1.png)
 
@@ -38,6 +36,15 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 - Vista de deleteCustomer (localhost:8080/customer/6) - METODO DELETE
 ![Vista de deleteCustomer](https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/README/5.png)
+
+- Vista de getOrderCustomer (localhost:8080/order/customer/1) - METODO GET
+![Vista de getOrderCustomer](https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/README/6.png)
+
+- Vista de getOrderCustomerDates (localhost:8080/order/customer/1/desde/2017-01-07/hasta/2018-01-02) - METODO GET
+![Vista de getOrderCustomerDates](https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/README/7.png)
+
+- Vista de getOrderCustomerLastMonth (localhost:8080/order/customer/1/ultimoMes) - METODO GET
+![Vista de getOrderCustomerLastMonth](https://github.com/lmarcela/BackEnd-Ordenes/blob/master/src/main/resources/static/img/README/8.png)
 
 
 # Configuracion en jenkins
